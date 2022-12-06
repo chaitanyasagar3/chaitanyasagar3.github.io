@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import contactImg from "../assets/img/contact-img.svg";
+import contactImg from "../assets/img/header-img.svg";
+import 'animate.css';
+import TrackVisibility from 'react-on-screen';
+
 
 export const Contact = () => {
   const formInitialDetails = {
@@ -24,17 +27,19 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending...");
-    let response = await fetch("http://localhost:5000/contact", {
+    let response = await fetch("http://localhost:3001/contact/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
+        "origin": "*"
       },
       body: JSON.stringify(formDetails),
     });
     setButtonText("Send");
+    console.log("start")
     let result = await response.json();
     setFormDetails(formInitialDetails);
-    if (result.code == 200) {
+    if (result.code === 200) {
       setStatus({ succes: true, message: 'Message sent successfully'});
     } else {
       setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
@@ -46,9 +51,15 @@ export const Contact = () => {
       <Container>
         <Row className="align-items-center">
           <Col size={12} md={6}>     
-            <img className="animate__animated animate__zoomIn" src={contactImg} alt="Contact Us"/>
+          <TrackVisibility>
+              {({ isVisible }) =>
+                <img className={isVisible ? "animate__animated animate__zoomIn" : ""} src={contactImg} alt="Contact Us"/>
+              }
+            </TrackVisibility>
           </Col>
           <Col size={12} md={6}>
+          <TrackVisibility>
+              {({ isVisible }) =>
                 <div className="animate__animated animate__fadeIn">
                 <h2>Get In Touch</h2>
                 <form onSubmit={handleSubmit}>
@@ -70,14 +81,16 @@ export const Contact = () => {
                       <button type="submit"><span>{buttonText}</span></button>
                     </Col>
                     {
-                      status.message &&
+                      status?.message &&
                       <Col>
-                        <p className={status.success === false ? "danger" : "success"}>{status.message}</p>
+                        <p className={!status?.success ? "danger" : "success"}>{status?.message}</p>
                       </Col>
                     }
                   </Row>
                 </form>
               </div>
+          }
+          </TrackVisibility>
           </Col>
         </Row>
       </Container>
