@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.9f786ebb.css",
-    "main.js": "/static/js/main.4cd5d524.js",
+    "main.js": "/static/js/main.0b00bb72.js",
     "static/js/787.749b4a44.chunk.js": "/static/js/787.749b4a44.chunk.js",
     "static/media/protfolio.png": "/static/media/protfolio.76fabbe5fa38e1e1a987.png",
     "static/media/banner-bg2.png": "/static/media/banner-bg2.f1c23fe5a481feede606.png",
@@ -10,7 +10,7 @@
     "static/media/proj-img3.png": "/static/media/proj-img3.03fc86d3579099230671.png",
     "static/media/header-img3.svg": "/static/media/header-img3.8d25ffaf78ed57a29f5b24722842ec50.svg",
     "static/media/proj-img1.png": "/static/media/proj-img1.b8285f06f7433814c014.png",
-    "static/media/SagarChaitanya.pdf": "/static/media/SagarChaitanya.90d626507971dd8d77c3.pdf",
+    "static/media/SagarChaitanya.pdf": "/static/media/SagarChaitanya.319b868fddca44223e62.pdf",
     "static/media/header-img.svg": "/static/media/header-img.84bf93eb20488a753440bf83d27db7bb.svg",
     "static/media/proj-img4.png": "/static/media/proj-img4.c48e974cb288ceec75b4.png",
     "static/media/CentraNo2-Bold.ttf": "/static/media/CentraNo2-Bold.2faff7f7d3fc92a2fcd9.ttf",
@@ -34,11 +34,11 @@
     "index.html": "/index.html",
     "static/media/nav-icon2.svg": "/static/media/nav-icon2.178f497aa17b70c42df2a1a8c926ed01.svg",
     "main.9f786ebb.css.map": "/static/css/main.9f786ebb.css.map",
-    "main.4cd5d524.js.map": "/static/js/main.4cd5d524.js.map",
+    "main.0b00bb72.js.map": "/static/js/main.0b00bb72.js.map",
     "787.749b4a44.chunk.js.map": "/static/js/787.749b4a44.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9f786ebb.css",
-    "static/js/main.4cd5d524.js"
+    "static/js/main.0b00bb72.js"
   ]
 }
