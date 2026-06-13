@@ -26,23 +26,38 @@ export const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formDetails.firstName || !formDetails.lastName || !formDetails.email || !formDetails.message) {
+      setStatus({ success: false, message: 'Please fill in all required fields.' });
+      return;
+    }
+
     setButtonText("Sending...");
-    let response = await fetch("http://localhost:3001/contact/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-        "origin": "*"
-      },
-      body: JSON.stringify(formDetails),
-    });
-    setButtonText("Send");
-    console.log("start")
-    let result = await response.json();
-    setFormDetails(formInitialDetails);
-    if (result.code === 200) {
-      setStatus({ succes: true, message: 'Message sent successfully'});
-    } else {
-      setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          access_key: process.env.REACT_APP_WEB3FORMS_ACCESS_KEY,
+          subject: "Contact Form Submission - Portfolio",
+          from_name: `${formDetails.firstName} ${formDetails.lastName}`,
+          ...formDetails
+        }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        setStatus({ success: true, message: 'Message sent successfully' });
+        setFormDetails(formInitialDetails);
+      } else {
+        setStatus({ success: false, message: 'Something went wrong, please try again later.' });
+      }
+    } catch {
+      setStatus({ success: false, message: 'Something went wrong, please try again later.' });
+    } finally {
+      setButtonText("Send");
     }
   };
 
@@ -68,7 +83,7 @@ export const Contact = () => {
                       <input type="text" value={formDetails.firstName} placeholder="First Name" onChange={(e) => onFormUpdate('firstName', e.target.value)} />
                     </Col>
                     <Col size={12} sm={6} className="px-1">
-                      <input type="text" value={formDetails.lasttName} placeholder="Last Name" onChange={(e) => onFormUpdate('lastName', e.target.value)}/>
+                      <input type="text" value={formDetails.lastName} placeholder="Last Name" onChange={(e) => onFormUpdate('lastName', e.target.value)}/>
                     </Col>
                     <Col size={12} sm={6} className="px-1">
                       <input type="email" value={formDetails.email} placeholder="Email Address" onChange={(e) => onFormUpdate('email', e.target.value)} />
