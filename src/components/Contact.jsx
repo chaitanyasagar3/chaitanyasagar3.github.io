@@ -41,7 +41,7 @@ export const Contact = () => {
           "Accept": "application/json"
         },
         body: JSON.stringify({
-          access_key: process.env.REACT_APP_WEB3FORMS_ACCESS_KEY,
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
           subject: "Contact Form Submission - Portfolio",
           from_name: `${formDetails.firstName} ${formDetails.lastName}`,
           ...formDetails
